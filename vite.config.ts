@@ -5,6 +5,7 @@ import path from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/blender-unreal-agent-handbook/",
   plugins: [react(), tailwindcss(), jsxLocPlugin()],
   resolve: {
     alias: {
