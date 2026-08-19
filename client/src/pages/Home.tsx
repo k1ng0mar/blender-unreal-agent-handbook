@@ -25,6 +25,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { FieldMark, fieldAsset } from "@/components/FieldMark";
 import { Link } from "wouter";
 import {
   Bar,
@@ -134,14 +135,6 @@ const REFERENCES = [
   { label: "MCP security best practices", href: "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices", group: "MCP" },
 ];
 
-const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
-
-function FieldMark() {
-  return (
-    <img src={asset("images/field-engine-mark.png")} alt="" className="h-10 w-10 rounded-sm object-cover" />
-  );
-}
-
 function SectionHead({ number, label, title, body }: { number: string; label: string; title: string; body: string }) {
   return (
     <div className="max-w-3xl">
@@ -172,7 +165,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#ecebe2] text-[#1e241d]">
       <section className="grain relative overflow-hidden bg-[#171a16] text-[#f6f3e8]">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,22,18,.96)_0%,rgba(18,22,18,.82)_43%,rgba(18,22,18,.25)_100%)]" />
-        <div className="absolute inset-0 bg-cover bg-center opacity-75 mix-blend-screen" style={{ backgroundImage: `url('${asset("images/field-engine-hero.png")}')` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-75 mix-blend-screen" style={{ backgroundImage: `url('${fieldAsset("images/field-engine-hero.png")}')` }} />
         <header className="no-print relative z-10 mx-auto flex max-w-[1440px] items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
           <a href="#top" className="flex items-center gap-3" aria-label="FIELD//ENGINE home">
             <FieldMark />
@@ -189,9 +182,9 @@ export default function Home() {
             <button onClick={copyLink} className="control-pill hidden items-center gap-2 border border-[#e65b35]/55 px-3 py-2 text-xs font-medium text-[#e5e8de] sm:flex">
               {copied ? <Check size={14} /> : <Link2 size={14} />}{copied ? "Copied" : "Share"}
             </button>
-            <button onClick={() => window.print()} className="control-pill flex items-center gap-2 bg-[#e65b35] px-3 py-2 text-xs font-semibold text-[#fff5e9]">
+            <a href={`${import.meta.env.BASE_URL}book?print=1`} className="control-pill flex items-center gap-2 bg-[#e65b35] px-3 py-2 text-xs font-semibold text-[#fff5e9]">
               <Printer size={14} /> Print brief
-            </button>
+            </a>
           </div>
         </header>
 
@@ -260,7 +253,7 @@ export default function Home() {
               <div className="mono mt-1 text-[10px] leading-5 text-[#747a6e]">Counts are bibliographic categories, not a quality score. Full citations are in the downloadable fieldbook.</div>
             </div>
             <div className="overflow-hidden border border-[#c8c7ba] bg-[#1c211c] text-[#eff0e8]">
-              <img src={asset("images/agent-bridge.png")} alt="Abstract visualization of an agent bridge between a mesh graph and a built world" className="h-[210px] w-full object-cover opacity-80" />
+              <img src={fieldAsset("images/agent-bridge.png")} alt="Abstract visualization of an agent bridge between a mesh graph and a built world" className="h-[210px] w-full object-cover opacity-80" />
               <div className="p-7"><div className="mono text-[10px] uppercase tracking-[.14em] text-[#e65b35]">Core thesis</div><h3 className="display mt-3 text-3xl font-semibold tracking-[-.04em]">Capability is not reliability.</h3><p className="mt-4 max-w-xl text-sm leading-6 text-[#cdd4c7]">Python, CLI, and MCP can all drive an editor. Production quality comes from typed contracts, safe staging, verified state transitions, and reports that survive the agent session.</p></div>
             </div>
           </div>
@@ -308,8 +301,8 @@ export default function Home() {
         <div className="mx-auto max-w-[1320px]">
           <SectionHead number="04" label="Two authoring environments" title="Different runtimes. One evidence standard." body="Blender rewards data-block aware scripting and disciplined control of context, auto-execution, and threading. Unreal layers editor-only Python onto asset-aware APIs, import pipelines, tests, commandlets, and build graphs." />
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
-            <article className="overflow-hidden border border-[#c8c7ba] bg-[#f8f6ed]"><img src={asset("images/blender-workbench.png")} alt="Blender workbench with a stone architectural study" className="h-56 w-full object-cover" /><div className="p-7"><div className="flex items-center justify-between"><span className="mono text-[10px] uppercase tracking-[.14em] text-[#6d833f]">Blender / field notes</span><TerminalSquare size={19} className="text-[#59723a]" /></div><h3 className="display mt-4 text-3xl font-semibold tracking-[-.045em]">State lives in data blocks.</h3><p className="mt-4 text-sm leading-6 text-[#5b6257]">Prefer <code className="mono text-[12px]">bpy.data</code> for deterministic reads and writes. Use operators only with explicit mode and selection. Run unknown blend files with auto-execution disabled; keep Blender API mutations on its main thread.</p><a href="https://docs.blender.org/api/current/info_gotcha.html" target="_blank" rel="noreferrer" className="editorial-link mt-6 inline-flex items-center gap-2 text-sm font-semibold">Read the Blender API cautions <ExternalLink size={14} /></a></div></article>
-            <article className="overflow-hidden border border-[#c8c7ba] bg-[#f8f6ed]"><img src={asset("images/unreal-worldbuilding.png")} alt="Unreal-style courtyard and gatehouse under construction" className="h-56 w-full object-cover" /><div className="p-7"><div className="flex items-center justify-between"><span className="mono text-[10px] uppercase tracking-[.14em] text-[#6d833f]">Unreal / field notes</span><Layers3 size={19} className="text-[#59723a]" /></div><h3 className="display mt-4 text-3xl font-semibold tracking-[-.045em]">Assets are not ordinary files.</h3><p className="mt-4 text-sm leading-6 text-[#5b6257]">Use EditorAssetLibrary and AssetTools—not raw filesystem moves. Run reusable jobs via commandlets, gate builds through BuildGraph, and preserve test reports as artifacts. Python belongs to the Editor, not runtime gameplay.</p><a href="https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python" target="_blank" rel="noreferrer" className="editorial-link mt-6 inline-flex items-center gap-2 text-sm font-semibold">Read Unreal editor Python guidance <ExternalLink size={14} /></a></div></article>
+            <article className="overflow-hidden border border-[#c8c7ba] bg-[#f8f6ed]"><img src={fieldAsset("images/blender-workbench.png")} alt="Blender workbench with a stone architectural study" className="h-56 w-full object-cover" /><div className="p-7"><div className="flex items-center justify-between"><span className="mono text-[10px] uppercase tracking-[.14em] text-[#6d833f]">Blender / field notes</span><TerminalSquare size={19} className="text-[#59723a]" /></div><h3 className="display mt-4 text-3xl font-semibold tracking-[-.045em]">State lives in data blocks.</h3><p className="mt-4 text-sm leading-6 text-[#5b6257]">Prefer <code className="mono text-[12px]">bpy.data</code> for deterministic reads and writes. Use operators only with explicit mode and selection. Run unknown blend files with auto-execution disabled; keep Blender API mutations on its main thread.</p><a href="https://docs.blender.org/api/current/info_gotcha.html" target="_blank" rel="noreferrer" className="editorial-link mt-6 inline-flex items-center gap-2 text-sm font-semibold">Read the Blender API cautions <ExternalLink size={14} /></a></div></article>
+            <article className="overflow-hidden border border-[#c8c7ba] bg-[#f8f6ed]"><img src={fieldAsset("images/unreal-worldbuilding.png")} alt="Unreal-style courtyard and gatehouse under construction" className="h-56 w-full object-cover" /><div className="p-7"><div className="flex items-center justify-between"><span className="mono text-[10px] uppercase tracking-[.14em] text-[#6d833f]">Unreal / field notes</span><Layers3 size={19} className="text-[#59723a]" /></div><h3 className="display mt-4 text-3xl font-semibold tracking-[-.045em]">Assets are not ordinary files.</h3><p className="mt-4 text-sm leading-6 text-[#5b6257]">Use EditorAssetLibrary and AssetTools—not raw filesystem moves. Run reusable jobs via commandlets, gate builds through BuildGraph, and preserve test reports as artifacts. Python belongs to the Editor, not runtime gameplay.</p><a href="https://dev.epicgames.com/documentation/unreal-engine/scripting-the-unreal-editor-using-python" target="_blank" rel="noreferrer" className="editorial-link mt-6 inline-flex items-center gap-2 text-sm font-semibold">Read Unreal editor Python guidance <ExternalLink size={14} /></a></div></article>
           </div>
         </div>
       </section>
