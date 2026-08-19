@@ -1,0 +1,157 @@
+/*
+ * Field Manual Atelier design reminder: an editorial technical fieldbook with ink-black surfaces,
+ * parchment reading panes, moss-green signals, fine architectural rules, and asymmetrical margins.
+ * Avoid generic cards: use framed research plates, compact monospace metadata, and high-contrast type.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.975 0.008 85);
+  --foreground: oklch(0.18 0.01 100);
+  --card: oklch(0.99 0.004 85);
+  --card-foreground: oklch(0.18 0.01 100);
+  --popover: oklch(0.99 0.004 85);
+  --popover-foreground: oklch(0.18 0.01 100);
+  --primary: oklch(0.62 0.17 35);
+  --primary-foreground: oklch(0.98 0.006 95);
+  --secondary: oklch(0.93 0.014 90);
+  --secondary-foreground: oklch(0.28 0.016 110);
+  --muted: oklch(0.93 0.012 90);
+  --muted-foreground: oklch(0.48 0.02 100);
+  --accent: oklch(0.62 0.17 35);
+  --accent-foreground: oklch(0.98 0.006 95);
+  --border: oklch(0.79 0.017 95);
+  --input: oklch(0.79 0.017 95);
+  --ring: oklch(0.62 0.17 35);
+}
+
+.dark {
+  --background: oklch(0.16 0.012 115);
+  --foreground: oklch(0.93 0.012 90);
+  --card: oklch(0.20 0.014 112);
+  --card-foreground: oklch(0.93 0.012 90);
+  --popover: oklch(0.20 0.014 112);
+  --popover-foreground: oklch(0.93 0.012 90);
+  --primary: oklch(0.7 0.18 36);
+  --primary-foreground: oklch(0.18 0.02 120);
+  --secondary: oklch(0.26 0.016 112);
+  --secondary-foreground: oklch(0.88 0.012 90);
+  --muted: oklch(0.25 0.012 112);
+  --muted-foreground: oklch(0.68 0.015 100);
+  --accent: oklch(0.7 0.18 36);
+  --accent-foreground: oklch(0.18 0.02 120);
+  --border: oklch(0.38 0.02 112);
+  --input: oklch(0.38 0.02 112);
+  --ring: oklch(0.7 0.18 36);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  button:not(:disabled), a[href] { @apply cursor-pointer; }
+  ::selection { background: oklch(0.7 0.18 36 / 0.55); color: oklch(0.16 0.012 115); }
+}
+
+@layer components {
+  .display { font-family: var(--font-display); font-variation-settings: "opsz" 90; }
+  .mono { font-family: var(--font-mono); }
+  .paper-grid {
+    background-image:
+      linear-gradient(oklch(0.32 0.02 105 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.32 0.02 105 / 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+  .hairline { border-color: oklch(0.75 0.02 100 / 0.34); }
+  .editorial-link {
+    text-decoration: underline;
+    text-decoration-color: #e65b35;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .editorial-link:hover { color: #b84529; }
+  .section-number { color: #d6512f; font-family: var(--font-mono); letter-spacing: 0.12em; }
+  .plate {
+    border: 1px solid oklch(0.72 0.018 95);
+    background: oklch(0.99 0.004 85 / 0.88);
+    box-shadow: 0 16px 46px oklch(0.18 0.02 110 / 0.08);
+  }
+  .plate-dark {
+    border: 1px solid oklch(0.75 0.08 124 / 0.26);
+    background: oklch(0.19 0.014 112 / 0.94);
+    box-shadow: 0 20px 55px oklch(0.09 0.01 110 / 0.3);
+  }
+  .nav-link { transition: color 160ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .nav-link:hover { color: oklch(0.78 0.13 125); }
+  .control-pill {
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .control-pill:active { transform: scale(0.97); }
+  .control-pill:hover { transform: translateY(-1px); }
+  .field-ruler {
+    background-image: repeating-linear-gradient(90deg, #e65b35 0 1px, transparent 1px 13px);
+    background-size: 100% 10px;
+  }
+  .calibration-frame { position: relative; }
+  .calibration-frame::before, .calibration-frame::after {
+    content: ""; position: absolute; pointer-events: none; width: 14px; height: 14px; border-color: #e65b35;
+  }
+  .calibration-frame::before { left: 8px; top: 8px; border-left: 1px solid; border-top: 1px solid; }
+  .calibration-frame::after { right: 8px; bottom: 8px; border-right: 1px solid; border-bottom: 1px solid; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in { animation: rise-in 600ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+  .rise-in-delay { animation: rise-in 600ms 90ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .plate, .plate-dark { box-shadow: none; background: white; color: black; }
+}
