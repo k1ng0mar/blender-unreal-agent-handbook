@@ -8,6 +8,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Router, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import Book from "./pages/Book";
 import Home from "./pages/Home";
 
 function AppRouter() {
@@ -16,6 +17,7 @@ function AppRouter() {
     <Router base={base || undefined}>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/book" component={Book} />
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

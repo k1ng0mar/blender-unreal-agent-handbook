@@ -5,6 +5,8 @@ Research handbook and companion site for autonomous Blender / Unreal game-develo
 - Handbook: [`agentic_blender_unreal_handbook.md`](./agentic_blender_unreal_handbook.md)
 - Source ledger: [`research_ledger.md`](./research_ledger.md)
 - Live site: https://k1ng0mar.github.io/blender-unreal-agent-handbook/
+- Read the book: https://k1ng0mar.github.io/blender-unreal-agent-handbook/book
+- Markdown: https://k1ng0mar.github.io/blender-unreal-agent-handbook/handbook.md
 
 ```bash
 pnpm install

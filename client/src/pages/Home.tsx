@@ -25,6 +25,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Link } from "wouter";
 import {
   Bar,
   BarChart,
@@ -179,6 +180,7 @@ export default function Home() {
           </a>
           <nav className="hidden items-center gap-7 text-xs font-medium text-[#d8dccf] lg:flex">
             <a className="nav-link" href="#method">Method</a>
+            <Link className="nav-link" href="/book">Read the book</Link>
             <a className="nav-link" href="#control-paths">Control paths</a>
             <a className="nav-link" href="#playbook">Playbook</a>
             <a className="nav-link" href="#sources">Sources</a>
@@ -204,8 +206,8 @@ export default function Home() {
               A research-led operating manual for agents that inspect, build, validate, and safely automate Blender and Unreal Engine—not by guessing at UI steps, but by moving through verifiable control paths.
             </p>
             <div className="mt-10 flex flex-wrap gap-3 text-xs">
-              <a href="#method" className="control-pill inline-flex items-center gap-2 bg-[#e65b35] px-4 py-3 font-semibold text-[#fff5e9]">Enter the fieldbook <ArrowDownRight size={15} /></a>
-              <a href="#sources" className="control-pill inline-flex items-center gap-2 border border-[#b8c4aa]/40 px-4 py-3 font-semibold text-[#eef2e9]">29 cited sources <ArrowDownRight size={15} /></a>
+              <Link href="/book" className="control-pill inline-flex items-center gap-2 bg-[#e65b35] px-4 py-3 font-semibold text-[#fff5e9]">Read the book <ArrowDownRight size={15} /></Link>
+              <a href="#method" className="control-pill inline-flex items-center gap-2 border border-[#b8c4aa]/40 px-4 py-3 font-semibold text-[#eef2e9]">Enter the field map <ArrowDownRight size={15} /></a>
             </div>
           </div>
           <div className="rise-in-delay mt-14 flex justify-end lg:mt-0">
@@ -331,7 +333,7 @@ export default function Home() {
       <section className="bg-[#f8f6ed] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="mx-auto max-w-[1320px]"><SectionHead number="06" label="Fieldbook map" title="One book. Six launch points." body="The complete handbook is organized as an escalating manual, from safe inspection to advanced MCP architecture, script policy, interchange contracts, automated tests, and implementation sequencing." />
           <div className="mt-12 grid gap-px border border-[#c8c7ba] bg-[#c8c7ba] md:grid-cols-2 lg:grid-cols-3">{CHAPTERS.map(([num, title, copy], index) => <article key={num} className="group min-h-[185px] bg-[#f8f6ed] p-6 transition-colors hover:bg-[#f1ded1]"><div className="flex items-start justify-between"><span className="mono text-[11px] text-[#c84e2e]">{num}</span><ArrowUpRight size={16} className="text-[#a25841] opacity-0 transition-opacity group-hover:opacity-100" /></div><h3 className="display mt-9 text-2xl font-semibold tracking-[-.04em]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#60665c]">{copy}</p></article>)}</div>
-          <div className="mt-8 flex flex-col justify-between gap-5 border-y border-[#c8c7ba] py-6 md:flex-row md:items-center"><div className="flex items-center gap-3"><FileArchive className="text-[#d6512f]" size={21} /><div><div className="display font-semibold">Full academic fieldbook available with this research package.</div><div className="mt-1 text-sm text-[#62685c]">19 chapters, code patterns, risk taxonomy, workflow playbooks, and 29 reference links.</div></div></div><div className="flex gap-3"><button onClick={() => window.print()} className="control-pill inline-flex items-center gap-2 bg-[#e65b35] px-4 py-3 text-sm font-semibold text-[#fff5e9]"><Printer size={15} /> Save as PDF</button><a href="#sources" className="control-pill inline-flex items-center gap-2 border border-[#d17b61] px-4 py-3 text-sm font-semibold text-[#7d3826]">Inspect sources <ArrowDownRight size={15} /></a></div></div>
+          <div className="mt-8 flex flex-col justify-between gap-5 border-y border-[#c8c7ba] py-6 md:flex-row md:items-center"><div className="flex items-center gap-3"><FileArchive className="text-[#d6512f]" size={21} /><div><div className="display font-semibold">The full fieldbook is on this site.</div><div className="mt-1 text-sm text-[#62685c]">20 chapters, code patterns, risk taxonomy, workflow playbooks, and 29 reference links.</div></div></div><div className="flex gap-3"><Link href="/book" className="control-pill inline-flex items-center gap-2 bg-[#e65b35] px-4 py-3 text-sm font-semibold text-[#fff5e9]"><BookOpen size={15} /> Read the book</Link><a href={`${import.meta.env.BASE_URL}handbook.md`} download="agentic_blender_unreal_handbook.md" className="control-pill inline-flex items-center gap-2 border border-[#d17b61] px-4 py-3 text-sm font-semibold text-[#7d3826]">Download markdown <ArrowDownRight size={15} /></a></div></div>
         </div>
       </section>
 
@@ -342,7 +344,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="no-print bg-[#171a16] px-5 py-8 text-[#c5ccc0] sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1320px] flex-col justify-between gap-5 sm:flex-row sm:items-center"><div className="flex items-center gap-3"><FieldMark /><div><div className="display text-base font-semibold text-[#edf0e8]">FIELD//ENGINE</div><div className="mono mt-1 text-[10px] uppercase tracking-[.12em] text-[#e65b35]">field manual atelier / Blender × Unreal research</div></div></div><div className="flex items-center gap-4 text-xs"><a className="nav-link" href="#top">Back to top</a><button className="nav-link inline-flex items-center gap-1" onClick={copyLink}>{copied ? <Check size={13} /> : <Copy size={13} />}{copied ? "Link copied" : "Copy link"}</button></div></div></footer>
+      <footer className="no-print bg-[#171a16] px-5 py-8 text-[#c5ccc0] sm:px-8 lg:px-12"><div className="mx-auto flex max-w-[1320px] flex-col justify-between gap-5 sm:flex-row sm:items-center"><div className="flex items-center gap-3"><FieldMark /><div><div className="display text-base font-semibold text-[#edf0e8]">FIELD//ENGINE</div><div className="mono mt-1 text-[10px] uppercase tracking-[.12em] text-[#e65b35]">field manual atelier / Blender × Unreal research</div></div></div><div className="flex items-center gap-4 text-xs"><Link className="nav-link" href="/book">Read the book</Link><a className="nav-link" href="#top">Back to top</a><button className="nav-link inline-flex items-center gap-1" onClick={copyLink}>{copied ? <Check size={13} /> : <Copy size={13} />}{copied ? "Link copied" : "Copy link"}</button></div></div></footer>
     </main>
   );
 }
